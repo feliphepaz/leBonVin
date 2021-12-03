@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  font-family: 'Inter', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* Form */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 600px;
+  margin: 40px;
+}
+
+.form input + input {
+  margin-top: 20px;
+}
+
+.form textarea {
+  margin: 20px 0;
+}
+
+.form input, .form textarea {
+  border: 2px solid #723acc;
+  border-radius: 10px;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+.form input:hover, .form input:focus, .form input:active, .form textarea:hover, .form textarea:focus, .form textarea:active {
+  background: #e3e2f6;
+  outline: none;
+  transition: .2s;
+}
+
+.form input:hover::placeholder, .form input:focus::placeholder, .form input:active::placeholder, .form textarea:hover::placeholder, .form textarea:focus::placeholder, .form textarea:active::placeholder {
   color: white;
+  transition: .2s;
 }
 
-.App-link {
-  color: #61dafb;
+.submit:hover, .submit:focus, .submit:active {
+  background: #482786 !important;
+  border: 2px solid #482786;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form input::placeholder, .form textarea::placeholder {
+  color: #e3e2f6;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+}
+
+.submit {
+  background: #723acc;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit[disabled] {
+  opacity: 0.8;
+  cursor: wait;
+}
+
+/* Criar Vinho */
+
+.img-preview {
+  display: block;
+  height: 200px;
+  width: 200px;
 }
