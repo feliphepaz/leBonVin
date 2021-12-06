@@ -27,6 +27,17 @@ const CriarVinho = () => {
         setWines(resolve);
     }
 
+    async function deleteWine(e) {
+        const wine = e.currentTarget;
+        await fetch(`http://lebonvin.local/json/api/wine/${wine.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem('Token'),
+            },
+        });
+        wine.parentElement.style.display = 'none';
+    }
+
 
     const [nome, setNome] = React.useState('');
     const [codigo, setCodigo] = React.useState('');
@@ -116,7 +127,10 @@ const CriarVinho = () => {
             </div>
             <ul className='criar-vinho-2'>
                 {wines.map((wine) => (
-                    <li key={wine.id}>{wine.title}</li>
+                    <li className='vinho' key={wine.id} style={{background: `url('${wine.src}') no-repeat center center`}}>
+                        <h2>{wine.title}</h2>
+                        <h2 onClick={deleteWine} id={wine.id} className='x'>X</h2>
+                    </li>
                 ))}
             </ul>
         </section>

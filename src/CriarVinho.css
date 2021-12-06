@@ -1,3 +1,53 @@
 .criar-vinho {
     display: flex;
 }
+
+.criar-vinho-2 {
+    margin: -10px;
+    margin-top: 30px;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+.criar-vinho-2 li {
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+    background-size: cover;
+    border: 2px solid #723acc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.criar-vinho-2 li h2 {
+    background: #723acc;
+    border-radius: 0px 0px 5px 5px;
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+.x {
+    display: none;
+    position: absolute;
+}
+
+.criar-vinho-2 li:hover .x {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 10px;
+    height: 10px;
+    background: red;
+    top: 0;
+    right: 0;
+    border-radius: 0px 5px 0px 5px;
+    transition: .4s;
+    cursor: pointer;
+}
