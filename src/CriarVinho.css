@@ -2,7 +2,15 @@
     display: flex;
 }
 
-.criar-vinho-2 {
+.img-preview {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.criar-vinho-list {
     margin: -10px;
     margin-top: 30px;
     display: flex;
@@ -11,7 +19,7 @@
     width: 50%;
 }
 
-.criar-vinho-2 li {
+.criar-vinho-list li {
     height: 200px;
     width: 200px;
     margin: 10px;
@@ -24,7 +32,7 @@
     position: relative;
 }
 
-.criar-vinho-2 li h2 {
+.criar-vinho-list li h2 {
     background: #723acc;
     border-radius: 0px 0px 5px 5px;
     padding: 20px;
@@ -37,7 +45,7 @@
     position: absolute;
 }
 
-.criar-vinho-2 li:hover .x {
+.criar-vinho-list li:hover .x {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,4 +58,44 @@
     border-radius: 0px 5px 0px 5px;
     transition: .4s;
     cursor: pointer;
+}
+
+.notify {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 24px;
+    padding: 40px;
+    z-index: 1000;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    animation: animaNotify .5s forwards;
+}
+
+.sucesso {
+    background: green;
+}
+
+.erro {
+    background: red;
+}
+
+@keyframes animaNotify {
+    0% {
+        opacity: 0;
+        transform: translate3d(0px, 30px, 0px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+@keyframes desanimaNotify {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        display: 0;
+    }
 }

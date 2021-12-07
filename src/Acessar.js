@@ -10,6 +10,12 @@ const Acessar = () => {
     console.log(loading);
     console.log(username, password);
 
+    React.useEffect(() => {
+        if (window.localStorage.getItem('Token')) {
+            navigate('/criar-vinho');
+        }
+    })
+
     async function handleForm(e) {
         e.preventDefault();
         try {

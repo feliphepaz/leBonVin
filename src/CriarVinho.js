@@ -1,13 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import './CriarVinho.css';
 
 const CriarVinho = () => {
     const [userID, setUserID] = React.useState('');
     const [wines, setWines] = React.useState([]);
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         getUserID();
         userWines();
+        if (!window.localStorage.getItem('Token')) {
+            navigate('/acessar');
+        }
     }, [userID])
 
     async function getUserID() {
@@ -53,8 +58,22 @@ const CriarVinho = () => {
     const [teor, setTeor] = React.useState('');
     const [potencial, setPotencial] = React.useState('');
     const [temperatura, setTemperatura] = React.useState('');
+    const [safra, setSafra] = React.useState('');
+    const [decantacao, setDecantacao] = React.useState('');
+    const [vinicola, setVinicola] = React.useState('');
     const [img, setImg] = React.useState({});
     const [loading, setLoading] = React.useState(false);
+
+    function createNotify(message, status) {
+        const div = document.createElement('div');
+        div.classList.add('notify');
+        div.classList.add(status);
+        div.innerText = message;
+        document.body.appendChild(div);
+        setTimeout(function() { 
+            div.style.display = 'none'
+        }, 4000);
+    }
 
     async function handleForm(e) {
         e.preventDefault();
@@ -76,6 +95,9 @@ const CriarVinho = () => {
             formData.append('teor', teor);
             formData.append('potencial', potencial);
             formData.append('temperatura', temperatura);
+            formData.append('safra', safra);
+            formData.append('decantacao', decantacao);
+            formData.append('vinicola', vinicola);
 
             const response = await fetch('http://lebonvin.local/json/api/wine', {
                 method: 'POST',
@@ -84,9 +106,10 @@ const CriarVinho = () => {
                 },
                 body: formData,
             });
-            console.log(response);
+            if (!response.ok) throw new Error;
+            createNotify('Vinho criado com sucesso', 'sucesso');
         } catch (err) {
-            console.log(err);
+            createNotify('Erro na criação', 'erro');
         } finally {
             setLoading(false);
         }
@@ -102,30 +125,29 @@ const CriarVinho = () => {
 
     return (
         <section className='criar-vinho'>
-            <div className='criar-vinho-1'>
-                <form className='form criar-vinho-form' onSubmit={handleForm}>
-                    <input type='text' placeholder='Nome do Vinho' value={nome} onChange={({target}) => setNome(target.value)} />
-                    <input type='text' placeholder='Código' value={codigo} onChange={({target}) => setCodigo(target.value)} />
-                    <input type='text' placeholder='Ano' value={ano} onChange={({target}) => setAno(target.value)} />
-                    <input type='text' placeholder='Quantidade' value={quantidade} onChange={({target}) => setQuantidade(target.value)} />
-                    <input type='text' placeholder='Tipo' value={tipo} onChange={({target}) => setTipo(target.value)} />
-                    <input type='text' placeholder='País' value={pais} onChange={({target}) => setPais(target.value)} />
-                    <textarea placeholder='Descrição' value={descricao} onChange={({target}) => setDescricao(target.value)} />
-                    <input type='text' placeholder='Uva' value={uva} onChange={({target}) => setUva(target.value)} />
-                    <input type='text' placeholder='Amadurecimento' value={amadurecimento} onChange={({target}) => setAmadurecimento(target.value)} />
-                    <input type='text' placeholder='Região' value={regiao} onChange={({target}) => setRegiao(target.value)} />
-                    <input type='text' placeholder='Classificação' value={classificacao} onChange={({target}) => setClassificacao(target.value)} />
-                    <input type='text' placeholder='Teor' value={teor} onChange={({target}) => setTeor(target.value)} />
-                    <input type='text' placeholder='Potencial' value={potencial} onChange={({target}) => setPotencial(target.value)} />
-                    <input type='text' placeholder='Temperatura' value={temperatura} onChange={({target}) => setTemperatura(target.value)} />
-                    <input type='file' name='img' id='img' onChange={handleImgForm} />
-                    <input className='submit' type='submit' value={loading ? 'Criando...' : 'Criar Vinho'} disabled={loading && 'disabled'} />
-                </form>
-                <div>
-                    {img.preview && <div className='img-preview' style={{backgroundImage: `url('${img.preview}')`}}></div>}
-                </div>
-            </div>
-            <ul className='criar-vinho-2'>
+            <form className='form criar-vinho-form' onSubmit={handleForm}>
+                <input type='text' placeholder='Nome do Vinho' value={nome} onChange={({target}) => setNome(target.value)} />
+                <input type='text' placeholder='Código' value={codigo} onChange={({target}) => setCodigo(target.value)} />
+                <input type='text' placeholder='Ano' value={ano} onChange={({target}) => setAno(target.value)} />
+                <input type='text' placeholder='Quantidade' value={quantidade} onChange={({target}) => setQuantidade(target.value)} />
+                <input type='text' placeholder='Tipo' value={tipo} onChange={({target}) => setTipo(target.value)} />
+                <input type='text' placeholder='País' value={pais} onChange={({target}) => setPais(target.value)} />
+                <textarea placeholder='Descrição' value={descricao} onChange={({target}) => setDescricao(target.value)} />
+                <input type='text' placeholder='Uva' value={uva} onChange={({target}) => setUva(target.value)} />
+                <textarea type='text' placeholder='Amadurecimento' value={amadurecimento} onChange={({target}) => setAmadurecimento(target.value)} />
+                <input type='text' placeholder='Região' value={regiao} onChange={({target}) => setRegiao(target.value)} />
+                <input type='text' placeholder='Classificação' value={classificacao} onChange={({target}) => setClassificacao(target.value)} />
+                <input type='text' placeholder='Teor' value={teor} onChange={({target}) => setTeor(target.value)} />
+                <input type='text' placeholder='Potencial' value={potencial} onChange={({target}) => setPotencial(target.value)} />
+                <input type='text' placeholder='Temperatura' value={temperatura} onChange={({target}) => setTemperatura(target.value)} />
+                <input type='text' placeholder='Safra' value={safra} onChange={({target}) => setSafra(target.value)} />
+                <input type='text' placeholder='Decantação' value={decantacao} onChange={({target}) => setDecantacao(target.value)} />
+                <input type='text' placeholder='Vinícola' value={vinicola} onChange={({target}) => setVinicola(target.value)} />
+                <input type='file' name='img' id='img' onChange={handleImgForm} />
+                {img.preview && <div className='img-preview' style={{backgroundImage: `url('${img.preview}')`}}></div>}
+                <input className='submit' type='submit' value={loading ? 'Criando...' : 'Criar Vinho'} disabled={loading && 'disabled'} />
+            </form>
+            <ul className='criar-vinho-list'>
                 {wines.map((wine) => (
                     <li className='vinho' key={wine.id} style={{background: `url('${wine.src}') no-repeat center center`}}>
                         <h2>{wine.title}</h2>
