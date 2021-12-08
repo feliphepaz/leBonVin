@@ -113,6 +113,10 @@ table {
   cursor: wait;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /* Criar Vinho */
 
 .img-preview {
@@ -123,6 +127,42 @@ table {
 
 /* Vinho */
 
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 42px;
+  color: #482786;
+  text-align: center;
+  margin-top: 200px;
+}
+
+.loading::after {
+  content: '';
+  border: 16px solid #f3f3f3;
+  margin-top: 200px;
+  border-radius: 50%;
+  border-top: 16px solid #482786;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .logo {
   display: block;
   margin: 40px auto;
@@ -132,6 +172,209 @@ table {
 .banner {
   height: 200px;
   width: 100%;
+  display: block;
   background: url(./Assets/bg.jpg) no-repeat center center;
   background-size: cover;
+}
+
+.wine-main {
+  display: flex;
+  max-width: 1100px;
+  padding: 0px 40px;
+  margin: 0 auto;
+}
+
+.wine-img img {
+  width: 540px;
+  margin-top: -20px;
+  border-radius: 20px;
+}
+
+.wine-content {
+  margin-left: 40px;
+  margin-top: 60px;
+}
+
+.wine-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 42px;
+  color: #482786;
+}
+
+.wine-content ul {
+  display: flex;
+  margin: 20px 0;
+}
+
+.wine-content ul li {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, .3);
+}
+
+.wine-content p {
+  color: rgba(0, 0, 0, .6);
+  letter-spacing: 1px;
+  line-height: 25px;
+  font-size: 14px;
+}
+
+.wine-content ul li + li::before {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 100%;
+  background: rgba(0, 0, 0, .2);
+  margin: 0px 10px;
+}
+
+.wine-data {
+  max-width: 1100px;
+  padding: 0px 40px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.wine-data h2 {
+  text-align: center;
+  margin: 90px 0px 60px 0px;
+  font-size: 24px;
+}
+
+.wine-data ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -40px;
+  margin-bottom: 40px;
+  justify-content: center;
+}
+
+.wine-data ul li {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  max-width: 300px;
+  margin: 40px;
+}
+
+.data-img {
+  margin-right: 10px;
+}
+
+.data-content {
+  font-size: 14px;
+}
+
+.data-content h3 {
+   color: #482786;
+   opacity: .6;
+   letter-spacing: 1px;
+   margin-bottom: 8px;
+}
+
+@media (max-width: 1717px) {
+  .wine-main {
+    flex-direction: column;
+  }
+  .wine-img img {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .wine-img {
+    order: 2;
+  }
+
+  .wine-content {
+    margin-left: 0px;
+    order: 1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .wine-data ul {
+    flex-direction: column;
+  }
+
+  .wine-data ul li {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .wine-data ul li + li {
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 400px) {
+  .wine-content ul {
+    flex-wrap: wrap;
+  }
+}
+
+[data-anime] {
+  opacity: 0;
+  transition: .3s;
+}
+
+[data-anime='left'].animate {
+  animation: left .5s forwards;
+}
+
+[data-anime='right'].animate {
+  animation: right .5s forwards;
+}
+
+[data-anime='down'].animate {
+  animation: down .5s forwards;
+}
+
+[data-anime='top'].animate {
+  animation: top .5s forwards;
+}
+
+
+@keyframes down {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, -30px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+
+@keyframes top {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, 30px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+
+@keyframes left {
+  0% {
+    opacity: 0;
+    transform: translate3d(-30px, 0px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+
+@keyframes right {
+  0% {
+    opacity: 0;
+    transform: translate3d(30px, 0px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
 }

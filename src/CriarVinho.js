@@ -16,7 +16,7 @@ const CriarVinho = () => {
     }, [userID])
 
     async function getUserID() {
-        const response = await fetch('http://lebonvin.local/json/api/user', {
+        const response = await fetch('https://formulabor.com.br/lebonvin-api/json/api/user', {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('Token'),
@@ -27,14 +27,14 @@ const CriarVinho = () => {
     }
 
     async function userWines() {
-        const response = await fetch(`http://lebonvin.local/json/api/wine/?_user=${userID}`);
+        const response = await fetch(`https://formulabor.com.br/lebonvin-api/json/api/wine/?_user=${userID}`);
         const resolve = await response.json();
         setWines(resolve);
     }
 
     async function deleteWine(e) {
         const wine = e.currentTarget;
-        await fetch(`http://lebonvin.local/json/api/wine/${wine.id}`, {
+        await fetch(`https://formulabor.com.br/lebonvin-api/json/api/wine/${wine.id}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('Token'),
@@ -99,7 +99,7 @@ const CriarVinho = () => {
             formData.append('decantacao', decantacao);
             formData.append('vinicola', vinicola);
 
-            const response = await fetch('http://lebonvin.local/json/api/wine', {
+            const response = await fetch('https://formulabor.com.br/lebonvin-api/json/api/wine', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + window.localStorage.getItem('Token'),

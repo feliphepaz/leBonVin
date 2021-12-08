@@ -20,7 +20,7 @@ const Acessar = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await fetch('http://lebonvin.local/json/jwt-auth/v1/token', {
+            const response = await fetch('https://formulabor.com.br/lebonvin-api/json/jwt-auth/v1/token', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
