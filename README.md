@@ -4,7 +4,7 @@ A Le Bon Vin é um pequeno boutique de vinhos localizado na Consolação. Este s
 <br>
 
 ## 🍾 Como foi desenvolvido?
-No projeto, contém 3 rotas: /acessar, /criar-vinho e /vinho/:id, onde esta última rota se refere ao ID que deve ser passado na URL para chamar a página do vinho correspondente.
+O projeto contém 3 rotas: /acessar, /criar-vinho e /vinho/:id, onde esta última rota se refere ao ID que deve ser passado na URL para chamar a página do vinho correspondente.
 
 Na rota /acessar e /criar-vinho, foi utilizado o JWT Authentication para fazer o sistema de login e criação de vinhos, e para desenvolvedor os endpoints, foi usado o banco de dados do WordPress. Explico melhor esse processo [aqui](https://github.com/feliphepaz/leBonVinAPI).
 
