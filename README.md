@@ -10,5 +10,5 @@ Na rota /acessar e /criar-vinho, foi utilizado o JWT Authentication respectivame
 
 #
 #### Créditos / Agradecimentos
-_Projeto desenvolvido para a agência Formulaviral e boutique Le Bon Vin._
+_Projeto desenvolvido para a Agência Formula Group e Boutique Le Bon Vin._
 
